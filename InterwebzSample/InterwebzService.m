@@ -7,6 +7,7 @@
 //
 
 #import "InterwebzService.h"
+#import "RSSParser.h"
 #import <AFNetworking.h>
 
 @implementation InterwebzService
@@ -33,6 +34,21 @@
     }];
     
     [operation start];
+}
+
+- (void)downloadRSSWithSuccessBlock:(void(^)(id rssEntries))successBlock {
+    
+    [self downloadRSSXMLWithSuccessBlock:^(NSXMLParser *parser) {
+        RSSParser *rssParser = [RSSParser new];
+        
+        parser.delegate = rssParser;
+        [parser parse];
+        
+        NSArray *results = [rssParser results];
+        if (successBlock) {
+            successBlock(results);
+        }
+    }];
 }
 
 @end

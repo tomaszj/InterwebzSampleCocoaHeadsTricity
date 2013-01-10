@@ -11,6 +11,6 @@
 @interface InterwebzService : NSObject
 
 - (void)downloadTweetsJSONWithSuccessBlock:(void(^)(id JSON))successBlock;
-- (void)downloadRSSXMLWithSuccessBlock:(void(^)(NSXMLParser *parser))successBlock;
+- (void)downloadRSSWithSuccessBlock:(void(^)(id rssEntries))successBlock;
 
 @end

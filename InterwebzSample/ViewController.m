@@ -30,7 +30,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (void)startDownloadingTweets {
-    InterwebzService *service = [InterwebzService new];
+    InterwebzService *service = [self service];
 
     [service downloadTweetsJSONWithSuccessBlock:^(id JSON) {
         _tweets = [JSON[@"results"] copy];
@@ -44,19 +44,13 @@
 }
 
 - (void)startDownloadingRSSContent {
-    InterwebzService *service = [InterwebzService new];
+    InterwebzService *service = [self service];
     
-    [service downloadRSSXMLWithSuccessBlock:^(NSXMLParser *parser) {
-        RSSParser *rssParser = [RSSParser new];
-        
-        parser.delegate = rssParser;
-        [parser parse];
-        
-        _rssEntries = [rssParser results];
-        
-        NSLog(@"RSS results: %@", _rssEntries);
+    [service downloadRSSWithSuccessBlock:^(id rssEntries) {
+        _rssEntries = rssEntries;
         
         [self.tableView reloadData];
+
     }];
 }
 
@@ -138,6 +132,11 @@
     
     
     return cell;
+}
+
+#pragma mark - Private methods
+- (InterwebzService *)service {
+    return [InterwebzService new];
 }
 
 @end
