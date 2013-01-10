@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "RSSParser.h"
+#import "InterwebzService.h"
 #import <AFNetworking/AFXMLRequestOperation.h>
 
 @implementation ViewController {
@@ -28,35 +29,39 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)tweetsButtonTapped:(id)sender {
-    NSURL *url = [NSURL URLWithString:@"http://search.twitter.com/search.json?q=ios&rpp=5&result_type=mixed"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+- (void)startDownloadingTweets {
+    InterwebzService *service = [InterwebzService new];
+
+    [service downloadTweetsJSONWithSuccessBlock:^(id JSON) {
         _tweets = [JSON[@"results"] copy];
         
         [self.tableView reloadData];
-    } failure:nil];
-    [operation start];
+    }];
 }
-- (IBAction)rssButtonTapped:(id)sender {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://rss.gazeta.pl/pub/rss/duzy_format.xml"]];
-    AFXMLRequestOperation *operation = [AFXMLRequestOperation XMLParserRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, NSXMLParser *XMLParser) {
+
+- (IBAction)tweetsButtonTapped:(id)sender {
+    [self startDownloadingTweets];
+}
+
+- (void)startDownloadingRSSContent {
+    InterwebzService *service = [InterwebzService new];
+    
+    [service downloadRSSXMLWithSuccessBlock:^(NSXMLParser *parser) {
         RSSParser *rssParser = [RSSParser new];
         
-        XMLParser.delegate = rssParser;
-        [XMLParser parse];
+        parser.delegate = rssParser;
+        [parser parse];
         
         _rssEntries = [rssParser results];
         
         NSLog(@"RSS results: %@", _rssEntries);
         
         [self.tableView reloadData];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, NSXMLParser *XMLParser) {
-        NSLog(@"Error: %@", error);
     }];
+}
 
-
-    [operation start];
+- (IBAction)rssButtonTapped:(id)sender {
+    [self startDownloadingRSSContent];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

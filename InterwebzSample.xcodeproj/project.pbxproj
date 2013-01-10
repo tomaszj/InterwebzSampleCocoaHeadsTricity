@@ -24,6 +24,7 @@
 		B3857026169EE53B00070E62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3857001169EE53A00070E62 /* Foundation.framework */; };
 		B385702E169EE53B00070E62 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B385702C169EE53B00070E62 /* InfoPlist.strings */; };
 		B3857063169EF48500070E62 /* RSSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B3857062169EF48500070E62 /* RSSParser.m */; };
+		B3857066169EFF4C00070E62 /* InterwebzService.m in Sources */ = {isa = PBXBuildFile; fileRef = B3857065169EFF4C00070E62 /* InterwebzService.m */; };
 		D141406CEA1C42F09D2CEC53 /* libPods-InterwebzSampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1D464E67D6B4174B94D5795 /* libPods-InterwebzSampleTests.a */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,8 @@
 		B385702D169EE53B00070E62 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B3857061169EF48500070E62 /* RSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSParser.h; sourceTree = "<group>"; };
 		B3857062169EF48500070E62 /* RSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSParser.m; sourceTree = "<group>"; };
+		B3857064169EFF4C00070E62 /* InterwebzService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterwebzService.h; sourceTree = "<group>"; };
+		B3857065169EFF4C00070E62 /* InterwebzService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterwebzService.m; sourceTree = "<group>"; };
 		D1D464E67D6B4174B94D5795 /* libPods-InterwebzSampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InterwebzSampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDFDED739BBD4FD5BF8B3666 /* Pods-InterwebzSampleTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InterwebzSampleTests.xcconfig"; path = "Pods/Pods-InterwebzSampleTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -131,6 +134,8 @@
 			children = (
 				B385700E169EE53A00070E62 /* AppDelegate.h */,
 				B385700F169EE53A00070E62 /* AppDelegate.m */,
+				B3857064169EFF4C00070E62 /* InterwebzService.h */,
+				B3857065169EFF4C00070E62 /* InterwebzService.m */,
 				B3857017169EE53A00070E62 /* MainStoryboard.storyboard */,
 				B3857061169EF48500070E62 /* RSSParser.h */,
 				B3857062169EF48500070E62 /* RSSParser.m */,
@@ -316,6 +321,7 @@
 				B3857010169EE53A00070E62 /* AppDelegate.m in Sources */,
 				B385701C169EE53A00070E62 /* ViewController.m in Sources */,
 				B3857063169EF48500070E62 /* RSSParser.m in Sources */,
+				B3857066169EFF4C00070E62 /* InterwebzService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
