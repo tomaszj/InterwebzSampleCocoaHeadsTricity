@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking.h>
+#import <AFNetworking/AFHTTPRequestOperation.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UITableViewController
 
 @end
